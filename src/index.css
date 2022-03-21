@@ -1,0 +1,26 @@
+body {
+  margin: 0px;
+}
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.6);
+}
+.bold {
+  font-weight: 700;
+}
+.stars {
+  display: inline-block;
+  margin-left: 1.5em;
+  /* margin-bottom: 1em; */
+  color: #f3d863;
+  font-size: 2em;
+  cursor: pointer;
+}
+/* .iconWrapper {
+  position: relative;
+}
+.iconStar {
+  position: absolute;
+  top: -0.9em;
+  left: 1em;
+} */
