@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Loader from "../components/Loading";
 import {
@@ -12,11 +12,10 @@ import {
   CardMedia,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-// import { Movie } from "../components/Movie";
-// import InfiniteScroll from "react-infinite-scroll-component";
-// import { loadMovies } from "../actions/index";
+import { setSearchHide } from "../actions/index";
 
-const Favourites = ({ favourites = [] }) => {
+const Favourites = ({ favourites = [], setSearchHide }) => {
+  useEffect(() => setSearchHide(), []);
   return (
     <>
       <Container maxWidth="sm">
@@ -91,4 +90,10 @@ const mapStateToProps = (state) => ({
   favourites: state.favouritesReducer.favourites,
 });
 
-export default connect(mapStateToProps)(Favourites);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSearchHide: () => dispatch(setSearchHide()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favourites);

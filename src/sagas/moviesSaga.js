@@ -1,6 +1,6 @@
 import { MOVIES } from "../constants";
 import { takeEvery, select, call, put } from "redux-saga/effects";
-import { fetchMovies } from "../api";
+import { fetchMovies } from "../api/fetchMovies";
 import { setMovies, setError } from "../actions";
 
 const getPage = (state) => state.moviesReducer.page;
@@ -11,12 +11,12 @@ function* handleMoviesLoad() {
     const page = yield select(getPage);
     const inputValue = yield select(getInputValue);
     const movies = yield call(fetchMovies, inputValue, page);
-    yield put(setMovies(movies)); // MOVIES.LOAD_SUCCESS
+    yield put(setMovies(movies));
   } catch (error) {
-    yield put(setError(error)); // MOVIES.LOAD_FAIL
+    yield put(setError(error));
   }
 }
 
 export default function* watchMoviesLoad() {
-  yield takeEvery(MOVIES.LOAD, handleMoviesLoad); // MOVIES.LOAD
+  yield takeEvery(MOVIES.LOAD, handleMoviesLoad);
 }

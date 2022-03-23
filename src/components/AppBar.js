@@ -13,7 +13,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import VideocamRoundedIcon from "@mui/icons-material/VideocamRounded";
 import StarPurple500SharpIcon from "@mui/icons-material/StarPurple500Sharp";
 import { connect } from "react-redux";
 import { setInputValue, loadMovies, refreshPage } from "../actions/index";
@@ -49,19 +49,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function SearchAppBar({ inputValue, setInputValue, loadMovies, refreshPage }) {
+function SearchAppBar({
+  inputValue,
+  setInputValue,
+  loadMovies,
+  refreshPage,
+  showSearch,
+}) {
   //  drawer
   const [state, setState] = React.useState({
     right: false,
   });
-  // search
-  const onSubmit = (e) => {
-    e.preventDefault();
-    refreshPage();
-    loadMovies();
-    // setInputValue("");
-  };
-  // drawer
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -70,6 +68,12 @@ function SearchAppBar({ inputValue, setInputValue, loadMovies, refreshPage }) {
       return;
     }
     setState({ ...state, [anchor]: open });
+  };
+  // search input
+  const onSubmit = (e) => {
+    e.preventDefault();
+    refreshPage();
+    loadMovies();
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -102,13 +106,15 @@ function SearchAppBar({ inputValue, setInputValue, loadMovies, refreshPage }) {
                     onKeyDown={toggleDrawer(anchor, false)}
                   >
                     <List className="black">
-                      {["Home", "Favourites"].map((text, index) => {
-                        if (text === "Home") {
+                      {["Movies", "Favourites"].map((text, index) => {
+                        if (text === "Movies") {
                           return (
                             <Link to="/" key={index}>
                               <ListItem button>
                                 <ListItemIcon>
-                                  <HomeRoundedIcon sx={{ color: "#1976d2" }} />
+                                  <VideocamRoundedIcon
+                                    sx={{ color: "#1976d2" }}
+                                  />
                                 </ListItemIcon>
                                 <ListItemText primary={text} />
                               </ListItem>
@@ -143,21 +149,22 @@ function SearchAppBar({ inputValue, setInputValue, loadMovies, refreshPage }) {
           >
             MOVIE DATABASE
           </Typography>
-          <form onSubmit={onSubmit}>
-            <Search>
-              <IconButton type="submit" aria-label="search">
-                <SearchIcon sx={{ color: "#fff" }} />
-              </IconButton>
-              <StyledInputBase
-                placeholder="Search movie…"
-                inputProps={{ "aria-label": "search" }}
-                name="inputValue"
-                value={inputValue || ""}
-                // value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-              />
-            </Search>
-          </form>
+          {showSearch && (
+            <form onSubmit={onSubmit}>
+              <Search>
+                <IconButton type="submit" aria-label="search">
+                  <SearchIcon sx={{ color: "#fff" }} />
+                </IconButton>
+                <StyledInputBase
+                  placeholder="Search movie…"
+                  inputProps={{ "aria-label": "search" }}
+                  name="inputValue"
+                  value={inputValue || ""}
+                  onChange={(e) => setInputValue(e.target.value)}
+                />
+              </Search>
+            </form>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
@@ -166,6 +173,7 @@ function SearchAppBar({ inputValue, setInputValue, loadMovies, refreshPage }) {
 
 const mapStateToProps = (state) => ({
   inputValue: state.moviesReducer.inputValue,
+  showSearch: state.searchReducer,
 });
 
 const mapDispatchToProps = (dispatch) => {

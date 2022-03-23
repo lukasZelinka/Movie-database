@@ -9,12 +9,12 @@ function* handleMovieLoad() {
   try {
     const id = yield select(getId);
     const movie = yield call(fetchMovie, id);
-    yield put(setMovie(movie)); // MOVIE.LOAD_SUCCESS
+    yield put(setMovie(movie));
   } catch (error) {
-    yield put(setErrorMovie(error)); // MOVIE.LOAD_FAIL
+    yield put(setErrorMovie(error));
   }
 }
 
 export default function* watchMovieLoad() {
-  yield takeEvery(MOVIE.LOAD, handleMovieLoad); // MOVIE.LOAD
+  yield takeEvery(MOVIE.LOAD, handleMovieLoad);
 }

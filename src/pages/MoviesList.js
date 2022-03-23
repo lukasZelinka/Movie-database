@@ -4,12 +4,27 @@ import { connect } from "react-redux";
 import { Movie } from "../components/Movie";
 import Loader from "../components/Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { loadMovies } from "../actions/index";
+import { loadMovies, setSearchShow } from "../actions/index";
 
-const MoviesList = ({ movies = [], isLoading, error, loadMovies }) => {
+const MoviesList = ({
+  movies = [],
+  isLoading,
+  error,
+  loadMovies,
+  setSearchShow,
+}) => {
+  // show search input
+  useEffect(() => setSearchShow(), []);
+  // display movies
+  const displayMovies = () => {
+    if (isLoading) return <Loader />;
+    return movies.map((movie, index) => <Movie key={index} {...movie} />);
+  };
   // infinite scroll
   const [hasMore, setHasMore] = useState(true);
-
+  const fetchData = () => {
+    loadMovies();
+  };
   useEffect(() => {
     if (movies.length % 10 === 0) {
       setHasMore(true);
@@ -17,17 +32,9 @@ const MoviesList = ({ movies = [], isLoading, error, loadMovies }) => {
       setHasMore(false);
     }
   }, [movies]);
-
-  const fetchData = () => {
-    loadMovies();
-  };
-
-  const displayMovies = () => {
-    if (isLoading) return <Loader />;
-    return movies.map((movie, index) => <Movie key={index} {...movie} />);
-  };
-
+  // error
   if (error) return <p>Unable to display movies.</p>;
+
   if (movies.length === 0) {
     return (
       <>
@@ -62,7 +69,7 @@ const MoviesList = ({ movies = [], isLoading, error, loadMovies }) => {
           align="center"
           color="textPrimary"
           gutterBottom
-          sx={{ m: 5 }}
+          sx={{ m: 5, mb: 0 }}
         >
           Movies
         </Typography>
@@ -114,6 +121,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     loadMovies: () => dispatch(loadMovies()),
+    setSearchShow: () => dispatch(setSearchShow()),
   };
 };
 

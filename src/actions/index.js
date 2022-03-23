@@ -8,6 +8,7 @@ import {
   DELETE_FAVOURITE,
   STAR_TRUE,
   STAR_FALSE,
+  SEARCH,
 } from "../constants";
 
 const loadMovies = () => ({
@@ -68,6 +69,14 @@ const setStarFalse = () => ({
   type: STAR_FALSE,
 });
 
+const setSearchHide = () => ({
+  type: SEARCH.HIDE,
+});
+
+const setSearchShow = () => ({
+  type: SEARCH.SHOW,
+});
+
 export {
   loadMovies,
   setMovies,
@@ -82,4 +91,6 @@ export {
   deleteFavouriteMovie,
   setStarTrue,
   setStarFalse,
+  setSearchHide,
+  setSearchShow,
 };

@@ -5,6 +5,7 @@ import errorReducer from "./errorReducer";
 import movieReducer from "./movieReducer";
 import saveIdReducer from "./saveIdReducer";
 import favouritesReducer from "./favouritesReducer";
+import searchReducer from "./searchReducer";
 
 const rootReducer = combineReducers({
   isLoading: loadingReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   movieReducer: movieReducer,
   saveIdReducer: saveIdReducer,
   favouritesReducer: favouritesReducer,
+  searchReducer: searchReducer,
 });
 
 export default rootReducer;

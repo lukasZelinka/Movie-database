@@ -3,7 +3,7 @@ import { MOVIES, MOVIE } from "../constants";
 const loadingReducer = (state = false, action) => {
   switch (action.type) {
     case MOVIES.LOAD:
-      return true;
+      return false;
     case MOVIES.LOAD_SUCCESS:
       return false;
     case MOVIES.LOAD_FAIL:

@@ -10,6 +10,7 @@ import {
   setStarFalse,
 } from "../actions";
 import { connect } from "react-redux";
+import { setSearchHide } from "../actions/index";
 import { Grid, Box, Typography, Button } from "@mui/material";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
@@ -25,11 +26,13 @@ const SingleMovie = ({
   favourites,
   setStarTrue,
   setStarFalse,
+  setSearchHide,
 }) => {
   const { id } = useParams();
   const { Poster, Title, Genre, Runtime, Plot, Writer, Year, Actors } = movie;
 
   useEffect(() => {
+    setSearchHide();
     saveId(id);
     loadMovie(id);
   }, []);
@@ -62,7 +65,14 @@ const SingleMovie = ({
                   sx={{ height: "100%" }}
                 >
                   <Grid item>
-                    <img src={Poster} alt="picture of movie" />
+                    <img
+                      src={
+                        Poster === "N/A"
+                          ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxYgA26QvIGAR69KBJPs8BF3QKdiNzXIv7Xg&usqp=CAU"
+                          : Poster
+                      }
+                      alt="picture of movie"
+                    />
                   </Grid>
                 </Grid>
               </Box>
@@ -81,21 +91,13 @@ const SingleMovie = ({
                       <span className="bold">Title: </span> {Title}{" "}
                       <span className="stars">
                         {star ? (
-                          // <span className="iconWrapper">
-                          // <span className="iconStar">
                           <AiOutlineStar
                             onClick={() => addFavouriteMovie(movie)}
                           />
                         ) : (
-                          // </span>
-                          // </span>
-                          // <span className="iconWrapper">
-                          // <span className="iconStar">
                           <AiFillStar
                             onClick={() => deleteFavouriteMovie(movie)}
                           />
-                          // </span>
-                          // </span>
                         )}
                       </span>
                     </Typography>
@@ -120,7 +122,12 @@ const SingleMovie = ({
                     <p>
                       <Link to="/">
                         <Button size="small" color="primary">
-                          back home
+                          movies
+                        </Button>
+                      </Link>
+                      <Link to="/favourites">
+                        <Button size="small" color="primary" sx={{ ml: 2 }}>
+                          favourites
                         </Button>
                       </Link>
                     </p>
@@ -151,6 +158,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteFavouriteMovie: (movie) => dispatch(deleteFavouriteMovie(movie)),
     setStarFalse: () => dispatch(setStarFalse()),
     setStarTrue: () => dispatch(setStarTrue()),
+    setSearchHide: () => dispatch(setSearchHide()),
   };
 };
 

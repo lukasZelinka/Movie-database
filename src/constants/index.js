@@ -10,6 +10,11 @@ const MOVIE = {
   LOAD_FAIL: "MOVIE_LOAD_FAIL",
 };
 
+const SEARCH = {
+  SHOW: "SEARCH_SHOW",
+  HIDE: "SEARCH_HIDE",
+};
+
 const UPDATE = "UPDATE";
 const REFRESH_PAGE = "REFRESH_PAGE";
 const SAVE_ID = "SAVE_ID";
@@ -28,4 +33,5 @@ export {
   DELETE_FAVOURITE,
   STAR_TRUE,
   STAR_FALSE,
+  SEARCH,
 };

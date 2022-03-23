@@ -1,10 +1,8 @@
-// import * as actions from "../actions/AppBarActions";
 import { UPDATE } from "../constants/index";
 
 export const initialState = {
   inputValue: "",
 };
-//reducer
 export default function AppBarReducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE:
