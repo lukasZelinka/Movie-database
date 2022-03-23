@@ -3,6 +3,7 @@ import {
   DELETE_FAVOURITE,
   STAR_TRUE,
   STAR_FALSE,
+  SET_FAVOURITES,
 } from "../constants";
 
 const initialState = {
@@ -26,6 +27,8 @@ const favouritesReducer = (state = initialState, action) => {
         ),
         star: true,
       };
+    case SET_FAVOURITES:
+      return { ...state, favourites: action.favourites };
     case STAR_TRUE:
       return { ...state, star: true };
     case STAR_FALSE:

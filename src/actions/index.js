@@ -9,6 +9,8 @@ import {
   STAR_TRUE,
   STAR_FALSE,
   SEARCH,
+  LOCAL_STORAGE_GET,
+  SET_FAVOURITES,
 } from "../constants";
 
 const loadMovies = () => ({
@@ -77,6 +79,15 @@ const setSearchShow = () => ({
   type: SEARCH.SHOW,
 });
 
+const getLocalStorage = () => ({
+  type: LOCAL_STORAGE_GET,
+});
+
+const setFavourites = (favourites) => ({
+  type: SET_FAVOURITES,
+  favourites,
+});
+
 export {
   loadMovies,
   setMovies,
@@ -93,4 +104,6 @@ export {
   setStarFalse,
   setSearchHide,
   setSearchShow,
+  getLocalStorage,
+  setFavourites,
 };

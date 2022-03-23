@@ -12,10 +12,14 @@ import {
   CardMedia,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { setSearchHide } from "../actions/index";
+import { setSearchHide, getLocalStorage } from "../actions/index";
 
-const Favourites = ({ favourites = [], setSearchHide }) => {
-  useEffect(() => setSearchHide(), []);
+const Favourites = ({ favourites, setSearchHide, getLocalStorage }) => {
+  useEffect(() => {
+    setSearchHide();
+    getLocalStorage();
+  }, []);
+
   return (
     <>
       <Container maxWidth="sm">
@@ -93,6 +97,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     setSearchHide: () => dispatch(setSearchHide()),
+    getLocalStorage: () => dispatch(getLocalStorage()),
   };
 };
 
