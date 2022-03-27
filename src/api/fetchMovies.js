@@ -4,7 +4,9 @@ const fetchMovies = async (inputValue, page) => {
   );
   const fullData = await response.json();
   const movies = fullData.Search;
-
+  if (!movies) {
+    throw new Error("error");
+  }
   return movies;
 };
 

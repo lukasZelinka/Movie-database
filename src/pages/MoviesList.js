@@ -13,9 +13,8 @@ const MoviesList = ({
   loadMovies,
   setSearchShow,
 }) => {
-  // show search input
   useEffect(() => setSearchShow(), []);
-  // display movies
+
   const displayMovies = () => {
     if (isLoading) return <Loader />;
     return movies.map((movie, index) => <Movie key={index} {...movie} />);
@@ -32,8 +31,31 @@ const MoviesList = ({
       setHasMore(false);
     }
   }, [movies]);
-  // error
-  if (error) return <p>Unable to display movies.</p>;
+
+  if (error)
+    return (
+      <>
+        <Container maxWidth="sm">
+          <Typography
+            variant="h4"
+            align="center"
+            color="textPrimary"
+            gutterBottom
+            sx={{ m: 4 }}
+          >
+            Movie database.
+          </Typography>
+          <Typography
+            variant="h5"
+            align="center"
+            color="textSecondary"
+            paragraph
+          >
+            No match.
+          </Typography>
+        </Container>
+      </>
+    );
 
   if (movies.length === 0) {
     return (
@@ -46,7 +68,7 @@ const MoviesList = ({
             gutterBottom
             sx={{ m: 3 }}
           >
-            Welcome to our Movie database
+            Welcome to our Movie database.
           </Typography>
           <Typography
             variant="h5"
@@ -54,8 +76,7 @@ const MoviesList = ({
             color="textSecondary"
             paragraph
           >
-            Please enter a movie name in the search bar. Then press "enter" or
-            click on the search icon. Your movies will display on your screen.
+            Please type the name of the movie.
           </Typography>
         </Container>
       </>
@@ -72,6 +93,16 @@ const MoviesList = ({
           sx={{ m: 5, mb: 0 }}
         >
           Movies
+        </Typography>
+
+        <Typography
+          variant="h5"
+          align="center"
+          color="textSecondary"
+          sx={{ mt: 3 }}
+          paragraph
+        >
+          Please scroll down to load new movies.
         </Typography>
       </Container>
       <Container maxWidth="lg" sx={{ pb: 5 }}>
