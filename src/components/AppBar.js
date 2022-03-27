@@ -163,7 +163,7 @@ function SearchAppBar({
                   onChange={(e) => setInputValue(e.target.value)}
                   sx={{
                     width: { xs: "60%", sm: "100%" },
-                    fontSize: { xs: "70%", sm: "100%" },
+                    // fontSize: { xs: "70%", sm: "100%" },
                   }}
                 />
               </Search>
