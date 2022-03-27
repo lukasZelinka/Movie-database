@@ -17,9 +17,11 @@ a {
 }
 /* SingleMovie.js */
 .stars {
-  display: inline-block;
-  margin-left: 1.5em;
+  /* display: inline-block; */
+  /* margin-left: 1.5em; */
   color: #f3d863;
   font-size: 2em;
   cursor: pointer;
+  text-align: center;
+  margin: 0;
 }
