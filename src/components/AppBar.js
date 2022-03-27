@@ -151,7 +151,7 @@ function SearchAppBar({
           </Typography>
           {showSearch && (
             <form onSubmit={onSubmit}>
-              <Search>
+              <Search sx={{ display: "flex" }}>
                 <IconButton type="submit" aria-label="search">
                   <SearchIcon sx={{ color: "#fff" }} />
                 </IconButton>
@@ -161,10 +161,10 @@ function SearchAppBar({
                   name="inputValue"
                   value={inputValue || ""}
                   onChange={(e) => setInputValue(e.target.value)}
-                  sx={{
-                    width: { xs: "60%", sm: "100%" },
-                    // fontSize: { xs: "70%", sm: "100%" },
-                  }}
+                  // sx={{
+                  // width: { xs: "60%", sm: "100%" },
+                  // fontSize: { xs: "70%", sm: "100%" },
+                  // }}
                 />
               </Search>
             </form>
