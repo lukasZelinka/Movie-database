@@ -94,7 +94,7 @@ const MoviesList = ({
         >
           Movies
         </Typography>
-
+        {/* 
         <Typography
           variant="h5"
           align="center"
@@ -103,7 +103,7 @@ const MoviesList = ({
           paragraph
         >
           Please scroll down to load new movies.
-        </Typography>
+        </Typography> */}
       </Container>
       <Container maxWidth="lg" sx={{ pb: 5 }}>
         <Grid
