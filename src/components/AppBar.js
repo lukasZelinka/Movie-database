@@ -161,7 +161,6 @@ function SearchAppBar({
                   name="inputValue"
                   value={inputValue || ""}
                   onChange={(e) => setInputValue(e.target.value)}
-                  // sx={{ width: { xs: "76%" } }}
                 />
               </Search>
             </form>

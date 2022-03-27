@@ -14,11 +14,12 @@ a {
   .css-1ido6c7-MuiInputBase-root {
     width: 50%;
   }
+  .css-1ido6c7-MuiInputBase-root {
+    font-size: 0.7rem !important;
+  }
 }
 /* SingleMovie.js */
 .stars {
-  /* display: inline-block; */
-  /* margin-left: 1.5em; */
   color: #f3d863;
   font-size: 2em;
   cursor: pointer;
