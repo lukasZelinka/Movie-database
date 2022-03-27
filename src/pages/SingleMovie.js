@@ -53,12 +53,9 @@ const SingleMovie = ({
   } else {
     return (
       <>
-        {/* <Box sx={{ flexGrow: 1 }}> */}
         <Box>
           <Grid container spacing={1}>
-            {/* <Grid item xs={12} sm={6} sx={{ backgroundColor: "blue" }}> */}
             <Grid item xs={12} sm={6}>
-              {/* <Box sx={{ height: { sm: "90vh" }, backgroundColor: "#bada55" }}> */}
               <Box sx={{ height: { sm: "90vh" } }}>
                 <Grid
                   container
@@ -67,7 +64,6 @@ const SingleMovie = ({
                   alignItems="center"
                   sx={{
                     height: { sm: "100%" },
-                    // backgroundColor: { xs: "red", sm: "green" },
                   }}
                 >
                   <Grid item sx={{ mt: { xs: 2, sm: 0 } }}>
@@ -83,18 +79,15 @@ const SingleMovie = ({
                 </Grid>
               </Box>
             </Grid>
-            {/* <Grid item xs={12} sm={6} sx={{ backgroundColor: "olive" }}> */}
             <Grid item xs={12} sm={6}>
               <Box sx={{ height: { sm: "90vh" } }}>
                 <Grid
                   container
                   direction="row"
                   alignItems="center"
-                  // sx={{ height: { sm: "100%" }, backgroundColor: "yellow" }}
                   sx={{ height: { sm: "100%" } }}
                 >
                   <Grid item sx={{ p: 2 }}>
-                    {/* <Typography variant="body1"> */}
                     <Box className="stars">
                       {star ? (
                         <AiOutlineStar
@@ -106,7 +99,6 @@ const SingleMovie = ({
                         />
                       )}
                     </Box>
-                    {/* </Typography> */}
                     <Typography variant="body1">
                       {" "}
                       <span className="bold">Title: </span> {Title}{" "}

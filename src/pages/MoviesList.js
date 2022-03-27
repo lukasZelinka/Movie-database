@@ -43,7 +43,7 @@ const MoviesList = ({
             gutterBottom
             sx={{ m: 4 }}
           >
-            Movie database.
+            Movie database
           </Typography>
           <Typography
             variant="h5"
@@ -51,7 +51,7 @@ const MoviesList = ({
             color="textSecondary"
             paragraph
           >
-            No match.
+            No match
           </Typography>
         </Container>
       </>
@@ -68,7 +68,7 @@ const MoviesList = ({
             gutterBottom
             sx={{ m: 3 }}
           >
-            Welcome to our Movie database.
+            Movie database
           </Typography>
           <Typography
             variant="h5"
@@ -94,16 +94,6 @@ const MoviesList = ({
         >
           Movies
         </Typography>
-        {/* 
-        <Typography
-          variant="h5"
-          align="center"
-          color="textSecondary"
-          sx={{ mt: 3 }}
-          paragraph
-        >
-          Please scroll down to load new movies.
-        </Typography> */}
       </Container>
       <Container maxWidth="lg" sx={{ pb: 5 }}>
         <Grid

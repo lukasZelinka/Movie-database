@@ -9,15 +9,6 @@ a {
 .bold {
   font-weight: 700;
 }
-/* AppBar.js */
-/* @media screen and (max-width: 313.98px) {
-  .css-1ido6c7-MuiInputBase-root {
-    width: 50%;
-  }
-  .css-1ido6c7-MuiInputBase-root {
-    font-size: 0.7rem !important;
-  }
-} */
 /* SingleMovie.js */
 .stars {
   color: #f3d863;
