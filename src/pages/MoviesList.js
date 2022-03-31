@@ -43,7 +43,7 @@ const MoviesList = ({
             gutterBottom
             sx={{ m: 4 }}
           >
-            Movie database
+            Movie Database
           </Typography>
           <Typography
             variant="h5"
