@@ -5,6 +5,7 @@ import movieSaga from "./movieSaga";
 import addStorageSaga from "./addStorageSaga";
 import deleteStorageSaga from "./deleteStorageSaga";
 import getStorageSaga from "./getStorageSaga";
+import infiniteMoviesSaga from "./infiniteMoviesSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     addStorageSaga(),
     deleteStorageSaga(),
     getStorageSaga(),
+    infiniteMoviesSaga(),
   ]);
 }

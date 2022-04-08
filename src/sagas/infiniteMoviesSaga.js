@@ -1,7 +1,7 @@
-import { MOVIES } from "../constants";
+import { INFINITE_MOVIES } from "../constants";
 import { takeEvery, select, call, put } from "redux-saga/effects";
 import { fetchMovies } from "../api/fetchMovies";
-import { setMovies, setError } from "../actions";
+import { setInfiniteMovies, setErrorInfiniteMovies } from "../actions";
 
 const getPage = (state) => state.moviesReducer.page;
 const getInputValue = (state) => state.moviesReducer.inputValue;
@@ -10,13 +10,13 @@ function* handleMoviesLoad() {
   try {
     const page = yield select(getPage);
     const inputValue = yield select(getInputValue);
-    const movies = yield call(fetchMovies, inputValue, page);
-    yield put(setMovies(movies));
+    const infiniteMovies = yield call(fetchMovies, inputValue, page);
+    yield put(setInfiniteMovies(infiniteMovies));
   } catch (error) {
-    yield put(setError(error));
+    yield put(setErrorInfiniteMovies(error));
   }
 }
 
 export default function* watchMoviesLoad() {
-  yield takeEvery(MOVIES.LOAD, handleMoviesLoad);
+  yield takeEvery(INFINITE_MOVIES.LOAD, handleMoviesLoad);
 }

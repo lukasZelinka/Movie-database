@@ -4,31 +4,47 @@ import { connect } from "react-redux";
 import { Movie } from "../components/Movie";
 import Loader from "../components/Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { loadMovies, setSearchShow } from "../actions/index";
+import { loadInfiniteMovies, setSearchShow } from "../actions/index";
 
 const MoviesList = ({
   movies = [],
+  infiniteMovies,
   isLoading,
   error,
-  loadMovies,
+  loadInfiniteMovies,
   setSearchShow,
 }) => {
   useEffect(() => setSearchShow(), []);
 
   const displayMovies = () => {
-    if (isLoading) return <Loader />;
+    // if (isLoading) return <Loader />;
     return movies.map((movie, index) => <Movie key={index} {...movie} />);
+  };
+  const displayInfiniteMovies = () => {
+    return infiniteMovies.map((movie, index) => (
+      <Movie key={index} {...movie} />
+    ));
   };
   // infinite scroll
   const [hasMore, setHasMore] = useState(true);
+
   const fetchData = () => {
-    loadMovies();
+    loadInfiniteMovies();
   };
+
   useEffect(() => {
-    if (movies.length % 10 === 0) {
+    if (infiniteMovies.length % 10 === 0) {
       setHasMore(true);
     } else {
       setHasMore(false);
+    }
+  }, [infiniteMovies]);
+
+  useEffect(() => {
+    if (movies.length < 10) {
+      setHasMore(false);
+    } else {
+      setHasMore(true);
     }
   }, [movies]);
 
@@ -57,6 +73,7 @@ const MoviesList = ({
       </>
     );
 
+  if (isLoading) return <Loader />;
   if (movies.length === 0) {
     return (
       <>
@@ -101,10 +118,12 @@ const MoviesList = ({
           direction="row"
           justifyContent="center"
           alignItems="stretch"
-        ></Grid>
+        >
+          {displayMovies()}
+        </Grid>
       </Container>
       <InfiniteScroll
-        dataLength={movies.length}
+        dataLength={infiniteMovies.length}
         next={fetchData}
         hasMore={hasMore}
         loader={
@@ -125,7 +144,7 @@ const MoviesList = ({
             justifyContent="center"
             alignItems="stretch"
           >
-            {displayMovies()}
+            {displayInfiniteMovies()}
           </Grid>
         </Container>
       </InfiniteScroll>
@@ -137,11 +156,12 @@ const mapStateToProps = (state) => ({
   isLoading: state.isLoading,
   error: state.error,
   movies: state.moviesReducer.movies,
+  infiniteMovies: state.moviesReducer.infiniteMovies,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadMovies: () => dispatch(loadMovies()),
+    loadInfiniteMovies: () => dispatch(loadInfiniteMovies()),
     setSearchShow: () => dispatch(setSearchShow()),
   };
 };

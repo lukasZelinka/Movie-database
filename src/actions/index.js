@@ -11,6 +11,7 @@ import {
   SEARCH,
   LOCAL_STORAGE_GET,
   SET_FAVOURITES,
+  INFINITE_MOVIES,
 } from "../constants";
 
 const loadMovies = () => ({
@@ -24,6 +25,19 @@ const setMovies = (movies) => ({
 
 const setError = () => ({
   type: MOVIES.LOAD_FAIL,
+});
+
+const loadInfiniteMovies = () => ({
+  type: INFINITE_MOVIES.LOAD,
+});
+
+const setInfiniteMovies = (infiniteMovies) => ({
+  type: INFINITE_MOVIES.LOAD_SUCCESS,
+  infiniteMovies,
+});
+
+const setErrorInfiniteMovies = () => ({
+  type: INFINITE_MOVIES.LOAD_FAIL,
 });
 
 const loadMovie = () => ({
@@ -106,4 +120,7 @@ export {
   setSearchShow,
   getLocalStorage,
   setFavourites,
+  loadInfiniteMovies,
+  setInfiniteMovies,
+  setErrorInfiniteMovies,
 };
